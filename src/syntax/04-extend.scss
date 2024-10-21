@@ -1,0 +1,12 @@
+.error {
+  color: #bf2243;
+  font-size: 0.875rem;
+  font-style: italic;
+  background: yellowgreen;
+
+  .error--serious {
+    @extend .error;
+
+    font-weight: bold;
+  }
+}
