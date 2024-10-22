@@ -1,0 +1,34 @@
+// 연산자 실습
+$value-1: 10px;
+$value-2: 5px;
+
+.container {
+  animation-delay: 9s + 21s;
+  width: $value-1 + $value-2;
+  // 단위가 다른 것을 연산할 땐 calc  함수에 넣어서 해야함
+  // width: calc($value-1 - $value-2);
+  // width: $value-1 * $value-2;
+  // width: math.div($value-1, $value-2);
+}
+
+@debug $value-1 * $value-2;
+@debug "Helvetica" + " " + "Neue"; // 'Helvetica Neue'
+
+$word1: "Helvetica";
+$word2: "Neue";
+$word3: sans;
+$word4: serif;
+
+@debug (5px 7px 10px) != (5px, 7px, 10px); // true
+
+// 단위를 제거하는 함수
+//나눗셈 연산 (10px / 5px => 2)
+@function removeUnit($value) {
+  @return math.div($value, 1px);
+}
+.box {
+  // font-family: $word1 + " " + $word2;
+  // 아래는 인터폴레이션 연산
+  // font-family: "#{$word1 $word2}", #{$word3 - $word4};
+  line-height: removeUnit(10px);
+}

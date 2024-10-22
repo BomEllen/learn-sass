@@ -1,0 +1,9 @@
+// @use "./utils.scss" as *; //이렇게 *은 namespacing을 안 준다는 것. 생략
+// @use "./likelion.scss" as lion; //이제 호출 이름은 lion
+@use "./techit" as *;
+.wrapper {
+  border: 1px solid red;
+  @include size(100px, 100px);
+  // margin: $spacing-1;
+  // padding: lion.$spacing-2; //이렇게 파일 이름 안하고 lion으로만 호출 가능
+}
