@@ -1,0 +1,21 @@
+// 가로, 세로 크기를 설정하는 믹스인
+//inline-size, block-size
+
+@mixin inline-size($value) {
+  inline-size: $value;
+  width: $value;
+}
+
+@mixin block-size($value) {
+  block-size: $value;
+  height: $value;
+}
+
+//값을 하나 입력 받으면 width, 두 개 입력 받으면 width와 height 입력되는.
+@mixin size($width, $height: null) {
+  @include inline-size($width); //믹스인 안에 믹스인 재활용 하기
+
+  @if $height != null {
+    @include block-size($height);
+  }
+}

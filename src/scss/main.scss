@@ -1,5 +1,2 @@
-$spacing: 1.4rem;
-
-div {
-  padding: $spacing;
-}
+@use "./base/index";
+@use "./components";

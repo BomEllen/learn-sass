@@ -1,12 +1,25 @@
-.error {
+// %error은 Sass에 정의 된 플레이스 홀더 선택자. 아래 코드에서보이다싶이 위에 만들어두고
+// @extend로 상속 받아서 사용할 수 있음.
+// 참고로 @extend는 스타일을 재사용 할 수 있는 선택자.
+
+%error {
   color: #bf2243;
   font-size: 0.875rem;
   font-style: italic;
-  background: yellowgreen;
+  background-color: rgb(210, 210, 125);
+}
 
-  .error--serious {
-    @extend .error;
+.error--400 {
+  @extend %error;
+  font-weight: 400;
+}
 
-    font-weight: bold;
-  }
+.error--700 {
+  @extend %error;
+  font-weight: 700;
+}
+
+.error--900 {
+  @extend %error;
+  font-weight: 900;
 }

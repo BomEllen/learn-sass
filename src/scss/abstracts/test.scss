@@ -1,0 +1,10 @@
+//파일명 앞에 언더바를 안 붙여서 컴파일 되는 Scss파일. 테스트 용도임
+
+@use "./mixins" as *;
+
+.body {
+  @include inline-size(33px);
+  @include block-size(33px);
+  @include size(20px);
+  @include size(30px, 50px);
+}

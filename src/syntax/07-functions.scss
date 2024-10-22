@@ -1,16 +1,47 @@
-// 연산자 실습
+@use "sass:meta";
+@use "sass:math";
+
+$nothing: null;
+$num: 101;
+$unit: 180px;
+$spoqa: "Spoqa Han Sans Neo";
+$pretendard: Pretendard;
+$hex: #f94e07;
+$keyword: purple;
+$color-function: hsl(18, 95%, 50%);
+$yes: true;
+$no: false;
+$units: 20px 10px 0;
+$font-families: Pretendard, Helvetica, sans-serif;
+$square-bracket: [Verdana sans-serif];
+$theme: (
+  light: (
+    forground: #121916,
+    background: #e7e6e7,
+  ),
+  dark: (
+    background: #121916,
+    forground: #e7e6e7,
+  ),
+);
+
+//단위 반환 함수
+@function getUnit($value) {
+  @return math.unit($value);
+}
+
 $value-1: 10px;
-$value-2: 5px;
+$value-2: 5;
 
 .container {
   animation-delay: 9s + 21s;
-  width: $value-1 + $value-2;
-  // 단위가 다른 것을 연산할 땐 calc  함수에 넣어서 해야함
+  // width: $value-1 + $value-2;
   // width: calc($value-1 - $value-2);
   // width: $value-1 * $value-2;
-  // width: math.div($value-1, $value-2);
+  width: math.div($value-1, $value-2);
 }
 
+// 디버그 메세지 출력 = 변수를 연산자로 합쳐서 출력하는 것을 보여주는 예시.
 @debug $value-1 * $value-2;
 @debug "Helvetica" + " " + "Neue"; // 'Helvetica Neue'
 
@@ -22,13 +53,21 @@ $word4: serif;
 @debug (5px 7px 10px) != (5px, 7px, 10px); // true
 
 // 단위를 제거하는 함수
-//나눗셈 연산 (10px / 5px => 2)
+// 나눗셈 연산  ( 10px / 5px  = > 2 )
 @function removeUnit($value) {
-  @return math.div($value, 1px);
+  @return math.div($value, ($value * 0 + 1));
 }
+
+@function rem($value, $base: 16) {
+  @return math.div(removeUnit($value), $base) * 1rem;
+}
+
+@function em($value, $base) {
+  @return math.div(removeUnit($value), removeUnit($base)) * 1em;
+}
+
+// 위에서 정한 변수 적용시켜보기
 .box {
-  // font-family: $word1 + " " + $word2;
-  // 아래는 인터폴레이션 연산
-  // font-family: "#{$word1 $word2}", #{$word3 - $word4};
-  line-height: removeUnit(10px);
+  font-family: "#{$word1 $word2}", #{$word3 - $word4};
+  font-size: em(24px, 14px);
 }

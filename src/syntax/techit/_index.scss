@@ -1,2 +1,2 @@
-@forward "./utils";
-@forward "./likelion";
+@forward "./utils" as utils-*;
+@forward "./likelion" as lion-*;

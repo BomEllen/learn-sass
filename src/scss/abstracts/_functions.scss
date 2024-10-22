@@ -1,0 +1,17 @@
+// 수학 함수 사용해보는 파일
+@use "sass:math";
+
+// 단위 없애주는 함수 만들기 (노션 참고)
+@function removeUnit($value) {
+  @return math.div($value, ($value * 0 + 1));
+}
+
+//rem 단위 환산 함수
+@function rem($value, $base: 16) {
+  @return math.div(removeUnit($value), $base) * 1rem;
+}
+
+//em 단위 환산 함수
+@function em($value, $base) {
+  @return math.div(removeUnit($value), removeUnit($base)) * 1em;
+}
